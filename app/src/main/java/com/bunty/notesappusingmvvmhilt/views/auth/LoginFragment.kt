@@ -1,4 +1,4 @@
-package com.bunty.notesappusingmvvmhilt.views
+package com.bunty.notesappusingmvvmhilt.views.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,11 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bunty.notesappusingmvvmhilt.R
 import com.bunty.notesappusingmvvmhilt.databinding.FragmentLoginBinding
-import com.bunty.notesappusingmvvmhilt.helper.Helper
+import com.bunty.notesappusingmvvmhilt.utils.Helper
 import com.bunty.notesappusingmvvmhilt.models.UserRequest
 import com.bunty.notesappusingmvvmhilt.utils.NetworkResult
-import com.bunty.notesappusingmvvmhilt.viewmodel.AuthViewModel
+import com.bunty.notesappusingmvvmhilt.utils.TokenManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -23,6 +24,8 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private val authViewModel by viewModels<AuthViewModel>()
 
+    @Inject
+    lateinit var tokenManager: TokenManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -78,6 +81,7 @@ class LoginFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
+                    tokenManager.saveToken(it.data!!.token)
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment2)
                 }
                 is NetworkResult.Error -> {

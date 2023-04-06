@@ -3,17 +3,16 @@ package com.bunty.notesappusingmvvmhilt.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bunty.notesappusingmvvmhilt.api.ApiInterface
+import com.bunty.notesappusingmvvmhilt.api.UserApiInterface
 import com.bunty.notesappusingmvvmhilt.models.UserRequest
 import com.bunty.notesappusingmvvmhilt.models.UserResponse
 import com.bunty.notesappusingmvvmhilt.utils.Constants.TAG
 import com.bunty.notesappusingmvvmhilt.utils.NetworkResult
-import com.google.gson.JsonObject
 import org.json.JSONObject
 import retrofit2.Response
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val apiInterface: ApiInterface) {
+class UserRepository @Inject constructor(private val userApiInterface: UserApiInterface) {
 
     private val _userResponseLiveData = MutableLiveData<NetworkResult<UserResponse>>()
     val userResponseLiveData: LiveData<NetworkResult<UserResponse>>
@@ -21,13 +20,13 @@ class UserRepository @Inject constructor(private val apiInterface: ApiInterface)
 
     suspend fun registerUser(userRequest: UserRequest) {
         _userResponseLiveData.postValue(NetworkResult.Loading())
-        val response = apiInterface.userSignUp(userRequest)
+        val response = userApiInterface.userSignUp(userRequest)
         handleResponse(response)
     }
 
     suspend fun loginUser(userRequest: UserRequest) {
         _userResponseLiveData.postValue(NetworkResult.Loading())
-        val response = apiInterface.userSignIn(userRequest)
+        val response = userApiInterface.userSignIn(userRequest)
         handleResponse(response)
     }
 

@@ -1,4 +1,4 @@
-package com.bunty.notesappusingmvvmhilt.helper
+package com.bunty.notesappusingmvvmhilt.utils
 
 import android.content.Context
 import android.text.TextUtils

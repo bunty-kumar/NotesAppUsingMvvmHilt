@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.bunty.notesappusingmvvmhilt.views.LoginFragment"
+        android:name="com.bunty.notesappusingmvvmhilt.views.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.bunty.notesappusingmvvmhilt.views.RegisterFragment"
+        android:name="com.bunty.notesappusingmvvmhilt.views.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.bunty.notesappusingmvvmhilt.views.MainFragment"
+        android:name="com.bunty.notesappusingmvvmhilt.views.notes.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -46,13 +46,13 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.bunty.notesappusingmvvmhilt.views.NotesFragment"
+        android:name="com.bunty.notesappusingmvvmhilt.views.notes.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" />
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.bunty.notesappusingmvvmhilt.views.SplashFragment"
+        android:name="com.bunty.notesappusingmvvmhilt.views.auth.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action

@@ -1,10 +1,10 @@
-package com.bunty.notesappusingmvvmhilt.viewmodel
+package com.bunty.notesappusingmvvmhilt.views.auth
 
 import android.text.TextUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bunty.notesappusingmvvmhilt.helper.Helper
+import com.bunty.notesappusingmvvmhilt.utils.Helper
 import com.bunty.notesappusingmvvmhilt.models.UserRequest
 import com.bunty.notesappusingmvvmhilt.models.UserResponse
 import com.bunty.notesappusingmvvmhilt.repository.UserRepository

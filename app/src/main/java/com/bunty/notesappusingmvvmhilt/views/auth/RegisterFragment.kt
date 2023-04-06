@@ -1,4 +1,4 @@
-package com.bunty.notesappusingmvvmhilt.views
+package com.bunty.notesappusingmvvmhilt.views.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bunty.notesappusingmvvmhilt.R
 import com.bunty.notesappusingmvvmhilt.databinding.FragmentRegisterBinding
-import com.bunty.notesappusingmvvmhilt.helper.Helper.Companion.hideKeyboard
+import com.bunty.notesappusingmvvmhilt.utils.Helper.Companion.hideKeyboard
 import com.bunty.notesappusingmvvmhilt.models.UserRequest
 import com.bunty.notesappusingmvvmhilt.utils.NetworkResult
-import com.bunty.notesappusingmvvmhilt.viewmodel.AuthViewModel
+import com.bunty.notesappusingmvvmhilt.utils.TokenManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -23,6 +24,9 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val authViewModel by viewModels<AuthViewModel>()
+
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -80,6 +84,7 @@ class RegisterFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
+                    tokenManager.saveToken(it.data!!.token)
                     findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
                 }
                 is NetworkResult.Error -> {
